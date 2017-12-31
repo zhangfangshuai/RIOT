@@ -1,0 +1,143 @@
+@charset "UTF-8";
+* {
+    margin: 0;
+    padding: 0;
+    line-height: 110%;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+/*
+ * 汉仪旗黑字体50s； 使用： font-family: 'QH'; font-weight: 500;
+ */
+@font-face {
+    font-family: 'QH';
+    font-weight: 500;
+    src: local('HYQihei 50S')
+}
+
+@font-face {
+    font-family: 'QH';
+    font-weight: 600;
+    src: local('HYQihei 60S')
+}
+
+/*
+ * 微软雅黑字体； 使用： font-family: 'YH';
+ */
+@font-face {
+    font-family: 'YH';
+    src: local('Microsoft YaHei')
+}
+
+html {
+    box-sizing: border-box;
+    font-size: 100%;
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    background-color: #e7e7e7;
+    font-family: Helvetica;
+    /*overflow: hidden;*/
+}
+
+input[type="tel"] {
+    border: 1px solid #c0c0c0;
+    vertical-align: middle;
+}
+
+a[href] {
+    text-decoration: none;
+    border-radius: .25rem;
+}
+
+img[src=""]{
+    opacity: 0;
+}
+button {
+    border: none;
+}
+
+input {
+    outline: none;
+}
+
+td {
+    white-space: nowrap;
+}
+
+p {
+    display: inline-block;
+    white-space: pre-line;
+    word-wrap: break-word;
+    font-size: 1rem;
+}
+
+textarea {
+    border: 1px solid #c0c0c0;
+    color: #202020;
+    vertical-align: middle;
+    outline-offset: 0;
+    outline-style: none;
+    outline-width: 0;
+    border-radius: .3rem;
+}
+
+.center {
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-align: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -moz-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+}
+
+.middle {
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-direction: normal;
+    -webkit-box-orient: vertical;
+    -moz-flex-direction: column;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -moz-justify-content: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+}
+
+.shadow {
+    box-shadow: 0 .1rem .2rem 0 rgba(0, 0, 0, 0.1), 0 .2rem .4rem 0 rgba(0, 0, 0, 0.1);
+}
+
+.uselect{
+    -moz-user-select: text;
+    -webkit-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+}
+
+#main {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 45rem;
+    /*overflow: hidden;*/
+}
