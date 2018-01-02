@@ -1,6 +1,3 @@
-# h5
-  > web for xunyou mobile sdk
-
 
 ## Install nvm(optional, node version manager)
 ``` bash
@@ -52,12 +49,12 @@ cp -r dist dest_folder
 ```
 
 ## How to Start
-* Open main page tag file: v1/tags/t-ticket.tag in IDE
+* Open main page tag file: v1/tags/t-intro.tag in IDE
 * Edit it
 * Build for release
 * When need add new page, add new tag file on folder: v1/tags/ and open file: v1/tags/t-main.tag
 * Add case in t-main.tag file like this:
-```case 'station':```
-```                    return loadTag('tags/t-station.tag', function() {```
-```                        setTag('t-station')```
+```case 'intro':```
+```                    return loadTag('tags/t-intro.tag', function() {```
+```                        setTag('t-intro')```
 ```                    })```
