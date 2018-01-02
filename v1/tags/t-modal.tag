@@ -38,6 +38,18 @@
         <div class="fs-linego fs-linego-4"></div>
         <div class="fs-linego fs-linego-5"></div>
     </div>
+
+    <div class="wrap ringdot-wrap" if="{show && current=='ringdotLoading'}">
+        <div class="ring-loading">
+            <div class="fs-ring fs-ring-1"></div>
+        </div>
+    </div>
+
+    <div class="wrap creep-wrap" if="{show && current=='creepLoading'}">
+        <div class="fs-creep fs-creep-1">
+
+        </div>
+    </div>
     <script>
         var self = this
 
@@ -80,6 +92,12 @@
                         current: 'linegoLoading'
                     })
                     break
+                case 'creep-loading':
+                    self.update({
+                        show: true,
+                        current: 'creepLoading'
+                    })
+                    break
                 case 'close':
                     self.update({
                         show: false
@@ -99,7 +117,7 @@
             bottom: 0;
             left: 0;
             background-color: #353535;
-            opacity: .5;
+            opacity: .2;
             z-index: 200;
         }
         .bg {
@@ -112,11 +130,12 @@
             border-radius: .8rem;
             z-index: 201;
         }
-        .rload-wrap, .rbload-wrap, .ball-wrap  {
+        .rload-wrap, .rbload-wrap, .ball-wrap, .ringdot-wrap, .creep-wrap  {
             width: 7rem;
             height: 7rem;
             top: 20rem;
             left: 11.5rem;
+            background-color: initial;
         }
         .linego-wrap {
             width: 100%;
@@ -125,7 +144,6 @@
             padding: 3rem 0;
             background-color: initial;
         }
-
 
         .fs-ball-holder {
             position: absolute;
@@ -142,32 +160,32 @@
         .fs-ball-a {
             top: -.75rem;
             left: -.3rem;
-            width: 1.5rem;
-            height: 1.5rem;
+            width: .7rem;
+            height: .7rem;
         }
         .fs-ball-b {
             top: -.65rem;
             left: -.2rem;
-            width: 1.3rem;
-            height: 1.3rem;
+            width: .6rem;
+            height: .6rem;
         }
         .fs-ball-c {
             top: -.55rem;
             left: -.1rem;
-            width: 1.1rem;
-            height: 1.1rem;
+            width: .5rem;
+            height: .5rem;
         }
         .fs-ball-d {
             top: -.45rem;
             left: 0rem;
-            width: .9rem;
-            height: .9rem;
+            width: .4rem;
+            height: .4rem;
         }
         .fs-ball-e {
             top: -.35rem;
             left: .1rem;
-            width: .7rem;
-            height: .7rem;
+            width: .3rem;
+            height: .3rem;
         }
         .fs-ball-1 {
             animation: fs-ball-loading 1.5s .1s ease infinite;
@@ -196,24 +214,24 @@
             width: 5rem;
             height: 5rem;
             margin: 1rem auto;
-            border: .4rem solid #3d77e0;
+            border: .25rem solid #3d77e0;
             border-radius: 100%;
         }
         .fs-rbball-holder {
             position: absolute;
-            width: 1.5rem;
-            height: 4.3rem;
-            left: 1.3rem;
-            top: -.1rem;
+            width: 1rem;
+            height: 4rem;
+            left: 1.75rem;
+            top: .25rem;
         }
         .fs-rbball {
             position: absolute;
             top: -.9rem;
             left: -.3rem;
-            width: 1.5rem;
-            height: 1.5rem;
+            width: 1rem;
+            height: 1rem;
             border-radius: 50%;
-            background: #3d77e0;
+            background: #f0ffff;
         }
         .fs-ringball-1 {
             animation: fs-ringball-loading 1.5s cubic-bezier(.5, .5, .5, .5) infinite;
@@ -251,26 +269,26 @@
         .fs-linego {
             display: inline-block;
             opacity: 0;
-            width: 1.3rem;
-            height: 1.3rem;
+            width: .7rem;
+            height: .7rem;
             border-radius: 50%;
             transform: translateX(0rem);
             background-color: #00ddff;
         }
         .fs-linego-1 {
-            animation: fs-linego-loading 3s .8s infinite;
+            animation: fs-linego-loading 2s .8s infinite;
         }
         .fs-linego-2 {
-            animation: fs-linego-loading 3s .65s infinite;
+            animation: fs-linego-loading 2s .65s infinite;
         }
         .fs-linego-3 {
-            animation: fs-linego-loading 3s .5s infinite;
+            animation: fs-linego-loading 2s .5s infinite;
         }
         .fs-linego-4 {
-            animation: fs-linego-loading 3s .35s infinite;
+            animation: fs-linego-loading 2s .35s infinite;
         }
         .fs-linego-5 {
-            animation: fs-linego-loading 3s .2s infinite;
+            animation: fs-linego-loading 2s .2s infinite;
         }
         @keyframes fs-linego-loading {
             50% {
@@ -280,6 +298,50 @@
             100% {
                 transform: translateX(21rem);
                 opacity: 0;
+            }
+        }
+        .fs-ring {
+            position: relative;
+            top: 2rem;
+            margin: 0 auto;
+
+            width: .5rem;
+            height: .5rem;
+            padding: 1.5rem;
+            border: .3rem solid #3d77e0;
+            border-right: .25rem dotted #3d77e0;
+            border-radius: 50%;
+        }
+        .fs-ring-1 {
+            animation: fs-ringdot-loading 1s linear 0s infinite;
+        }
+        @keyframes fs-ringdot-loading {
+            50% {
+                transform: rotate(180deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .fs-creep {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+
+            width: .5rem;
+            height: .5px;
+            padding: 1.5rem;
+            border: .3rem solid #3d77e0;
+            border-right: .3rem solid transparent;
+            border-radius: 50%;
+        }
+        .fs-creep-1 {
+            animation: fs-creep-loading 1s linear 0s infinite;
+        }
+        @keyframes fs-creep-loading {
+            100% {
+                transform: rotate(360deg);
             }
         }
     </style>

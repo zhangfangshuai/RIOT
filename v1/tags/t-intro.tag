@@ -16,11 +16,11 @@
 
       self.toNext = function() {
           var loadindex = parseInt(Math.random() * 4)   // 生成[0-3]随机整数
-          console.log(loadindex)
           self.modalMsgBus.trigger(loadtype[loadindex])
+          self.modalMsgBus.trigger('creep-loading')
           setTimeout(function(){
               self.modalMsgBus.trigger('close')
-          }, 4000)
+          }, 2000)
       }
   </script>
   <style>
