@@ -134,7 +134,7 @@
             left: 3rem;
             top: 1.3rem;
         }
-        .fs-ball-a, .fs-ball-b, .fs-ballc, .fs-ball-d, .fs-ball-e {
+        .fs-ball-a, .fs-ball-b, .fs-ball-c, .fs-ball-d, .fs-ball-e {
             position: absolute;
             border-radius: 50%;
             background: #3d77e0;
@@ -170,19 +170,19 @@
             height: .7rem;
         }
         .fs-ball-1 {
-            animation: fs-ball-loading 1.5s .05s ease infinite;
+            animation: fs-ball-loading 1.5s .1s ease infinite;
         }
         .fs-ball-2 {
-            animation: fs-ball-loading 1.5s .23s ease infinite;
+            animation: fs-ball-loading 1.5s .2s ease infinite;
         }
         .fs-ball-3 {
             animation: fs-ball-loading 1.5s .28s ease infinite;
         }
         .fs-ball-4 {
-            animation: fs-ball-loading 1.5s .38s ease infinite;
+            animation: fs-ball-loading 1.5s .36s ease infinite;
         }
         .fs-ball-5 {
-            animation: fs-ball-loading 1.5s .48s ease infinite;
+            animation: fs-ball-loading 1.5s .4s ease infinite;
         }
         @keyframes fs-ball-loading {
             100% {
