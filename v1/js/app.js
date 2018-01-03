@@ -103,7 +103,7 @@ function popurl() {
 
 function tip(s, e) {
     // APP.error = s ? e[s] : e['-1']
-    APP.error = s ? e.interface + ': ' + s : e.interface + ': ' + '-1'
+    e && (APP.error = s ? e.interface + ': ' + s : e.interface + ': ' + '-1')
     msgBus.modalMsgBus.trigger('close')
     msgBus.mainMsgBus.trigger('go', 'error')
 }
@@ -119,13 +119,16 @@ function buildRequest(method, url, json, auth, failCallback) {
     auth && request.setRequestHeader('Authorization', getParam('auth'))
     request.timeout = 5000
     request.ontimeout = function(e) {
-        e && failCallback && failCallback()
+        (failCallback.toString() != 'true') && e && failCallback && failCallback()
+        (failCallback.toString() == 'true') && e && (APP.error = LANG.neterr) && tip(false, false)
     }
     request.onabort = function(e) {
-        e && failCallback && failCallback()
+        (failCallback.toString() != 'true') && e && failCallback && failCallback()
+        (failCallback.toString() == 'true') && e && (APP.error = LANG.neterr) && tip(false, false)
     }
     request.onerror = function(e) {
-        e && failCallback && failCallback()
+        (failCallback.toString() != 'true') && e && failCallback && failCallback()
+        (failCallback.toString() == 'true') && e && (APP.error = LANG.neterr) && tip(false, false)
     }
     return request
 }
@@ -200,12 +203,12 @@ var NetWorkListener = {
 }
 NetWorkListener.addHandler(window, "online", function() {
     console.log("网络连接正常")
-    msgBus.modalMsgBus.trigger('ring-loading')
+    msgBus.modalMsgBus.trigger('ball-loading')
     window.location.reload()
 })
 NetWorkListener.addHandler(window, "offline", function() {
-    APP.error = '检测到您的网络已断开，请检查后重试'
-    msgBus.mainMsgBus.trigger('go', 'error')
+    APP.error = LANG.neterr
+    tip(false, false)
 })
 
 

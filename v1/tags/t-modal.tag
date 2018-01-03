@@ -1,7 +1,7 @@
 <t-modal>
-    <div class="overlay {bg: ifbg}" if="{show}"></div>
+    <div class="overlay {unol: ifol}" if="{show}"></div>
 
-    <div class="wrap ball-wrap" if="{show && current==='ballLoading'}">
+    <div class="wrap" if="{show && current==='ballLoading'}">
         <div class="fs-ball-holder fs-ball-1">
             <div class="fs-ball-a"></div>
         </div>
@@ -19,11 +19,17 @@
         </div>
     </div>
 
-    <div class="wrap rload-wrap" if="{show && current=='ringLoading'}">
-        <div class="fs-ring fs-ring-1"></div>
+    <div class="wrap" if="{show && current=='ringLoading'}">
+        <div class="fs-ring"></div>
     </div>
 
-    <div class="wrap rbload-wrap" if="{show && current=='ringballLoading'}">
+    <div class="wrap" if="{show && current=='ringdotLoading'}">
+        <div class="ring-loading">
+            <div class="fs-ring"></div>
+        </div>
+    </div>
+
+    <div class="wrap" if="{show && current=='ringballLoading'}">
         <div class="fs-rbring">
             <div class="fs-rbball-holder fs-ringball-1">
                 <div class="fs-rbball"></div>
@@ -32,35 +38,85 @@
     </div>
 
     <div class="wrap linego-wrap" if="{show && current=='linegoLoading'}">
-        <div class="fs-linego fs-linego-1"></div>
-        <div class="fs-linego fs-linego-2"></div>
-        <div class="fs-linego fs-linego-3"></div>
-        <div class="fs-linego fs-linego-4"></div>
-        <div class="fs-linego fs-linego-5"></div>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
     </div>
 
-    <div class="wrap ringdot-wrap" if="{show && current=='ringdotLoading'}">
-        <div class="ring-loading">
-            <div class="fs-ring fs-ring-1"></div>
+    <div class="wrap dot-wrap" if="{show && current=='dotLoading'}">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <div class="wrap ball-flex-wrap" if="{show && current=='ballFlexLoading'}">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <div class="wrap ball-light-wrap" if="{show && current=='ballLightLoading'}">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <div class="wrap line-wrap" if="{show && current=='lineLoading'}">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <div class="wrap prog-wrap" if="{show && current=='progLoading'}">
+        <span></span>
+    </div>
+
+    <div class="wrap geer-wrap" if="{show && current=='geerLoading'}">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <div class="wrap ballhide-wrap" if="{show && current=='ballHideLoading'}">
+        <div class="holder">
+            <span></span>
         </div>
-    </div>
-
-    <div class="wrap creep-wrap" if="{show && current=='creepLoading'}">
-        <div class="fs-creep fs-creep-1">
-
+        <div class="holder">
+            <span></span>
+        </div>
+        <div class="holder">
+            <span></span>
+        </div>
+        <div class="holder">
+            <span></span>
+        </div>
+        <div class="holder">
+            <span></span>
+        </div>
+        <div class="holder">
+            <span></span>
         </div>
     </div>
     <script>
         var self = this
-
         self.show = false
-        self.ifbg = false
+        self.ifol = false
 
-        self.close = function() {
-            self.update({
-                show: false,
-            })
-        }
 
         self.on('unmount', function() {
             self.modalMsgBus.off('*')
@@ -68,6 +124,11 @@
 
         self.modalMsgBus.on('*', function(e, data) {
             switch (e) {
+                case 'close':
+                    self.update({
+                        show: false
+                    })
+                    break
                 case 'ringball-loading':
                     self.update({
                         show: true,
@@ -92,17 +153,49 @@
                         current: 'linegoLoading'
                     })
                     break
-                case 'creep-loading':
+                case 'dot-loading':
                     self.update({
                         show: true,
-                        current: 'creepLoading'
+                        current: 'dotLoading'
                     })
                     break
-                case 'close':
+                case 'ballflex-loading':
                     self.update({
-                        show: false
+                        show: true,
+                        current: 'ballFlexLoading'
                     })
                     break
+                case 'balllight-loading':
+                    self.update({
+                        show: true,
+                        current: 'ballLightLoading'
+                    })
+                    break
+                case 'line-loading':
+                    self.update({
+                        show: true,
+                        current: 'lineLoading'
+                    })
+                    break
+                case 'prog-loading':
+                    self.update({
+                        show: true,
+                        current: 'progLoading'
+                    })
+                    break
+                case 'geer-loading':
+                    self.update({
+                        show: true,
+                        current: 'geerLoading'
+                    })
+                    break
+                case 'ballhide-loading':
+                    self.update({
+                        show: true,
+                        current: 'ballHideLoading'
+                    })
+                    break
+
             }
         })
     </script>
@@ -120,30 +213,26 @@
             opacity: .2;
             z-index: 200;
         }
-        .bg {
+        .unol {
             background: initial;
+        }
+        .bgw {
+            background-color: white;
         }
         .wrap {
             position: absolute;
             display: block;
-            background-color: #ffffff;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+            width: 5rem;
+            height: 5rem;
+            text-align: center;
             border-radius: .8rem;
             z-index: 201;
         }
-        .rload-wrap, .rbload-wrap, .ball-wrap, .ringdot-wrap, .creep-wrap  {
-            width: 7rem;
-            height: 7rem;
-            top: 20rem;
-            left: 11.5rem;
-            background-color: initial;
-        }
-        .linego-wrap {
-            width: 100%;
-            height: 7rem;
-            top: 20rem;
-            padding: 3rem 0;
-            background-color: initial;
-        }
+
 
         .fs-ball-holder {
             position: absolute;
@@ -237,13 +326,11 @@
             animation: fs-ringball-loading 1.5s cubic-bezier(.5, .5, .5, .5) infinite;
         }
         @keyframes fs-ringball-loading {
-            50% {
-                transform: rotate(180deg);
-            }
             100% {
                 transform: rotate(360deg);
             }
         }
+
 
 
         .fs-ring {
@@ -252,45 +339,35 @@
             margin: 1rem auto;
             border: .8rem dashed #3cacef;
             border-radius: 50%;
-        }
-        .fs-ring-1 {
-            animation: fs-ring-loading 1.5s cubic-bezier(.5, .5, .5, .5) infinite;
+            animation: fs-ring-loading 1.5s linear infinite;
         }
         @keyframes fs-ring-loading {
-            50% {
-                transform: rotate(180deg);
-            }
             100% {
                 transform: rotate(360deg);
             }
         }
 
 
-        .fs-linego {
+        .linego-wrap {
+            width: 80%;
+            height: 5rem;
+            text-align: initial;
+        }
+        .linego-wrap span {
             display: inline-block;
             opacity: 0;
             width: .7rem;
             height: .7rem;
             border-radius: 50%;
-            transform: translateX(0rem);
-            background-color: #00ddff;
+            background-color: #ffffff;
+            animation: fs-linego-load 2s infinite;
         }
-        .fs-linego-1 {
-            animation: fs-linego-loading 2s .8s infinite;
-        }
-        .fs-linego-2 {
-            animation: fs-linego-loading 2s .65s infinite;
-        }
-        .fs-linego-3 {
-            animation: fs-linego-loading 2s .5s infinite;
-        }
-        .fs-linego-4 {
-            animation: fs-linego-loading 2s .35s infinite;
-        }
-        .fs-linego-5 {
-            animation: fs-linego-loading 2s .2s infinite;
-        }
-        @keyframes fs-linego-loading {
+        .linego-wrap span:nth-child(1) { animation-delay: .8s; }
+        .linego-wrap span:nth-child(2) { animation-delay: .65s; }
+        .linego-wrap span:nth-child(3) { animation-delay: .5s; }
+        .linego-wrap span:nth-child(4) { animation-delay: .35s; }
+        .linego-wrap span:nth-child(5) { animation-delay: .2s; }
+        @keyframes fs-linego-load {
             50% {
                 transform: translateX(11rem);
                 opacity: 1;
@@ -300,6 +377,9 @@
                 opacity: 0;
             }
         }
+
+
+
         .fs-ring {
             position: relative;
             top: 2rem;
@@ -313,34 +393,273 @@
             border-radius: 50%;
         }
         .fs-ring-1 {
-            animation: fs-ringdot-loading 1s linear 0s infinite;
+            animation: fs-ringdot-load 1s linear 0s infinite;
         }
-        @keyframes fs-ringdot-loading {
-            50% {
-                transform: rotate(180deg);
-            }
+        @keyframes fs-ringdot-load {
             100% {
                 transform: rotate(360deg);
             }
         }
 
-        .fs-creep {
-            position: absolute;
-            top: 2rem;
-            left: 2rem;
 
-            width: .5rem;
-            height: .5px;
-            padding: 1.5rem;
-            border: .3rem solid #3d77e0;
-            border-right: .3rem solid transparent;
+
+        .dot-wrap {
+            width: 10rem;
+            height: 5rem;
+        }
+        .dot-wrap span {
+            display: inline-block;
+            width: .2rem;
+            height: .2rem;
+            opacity: .2;
+            margin-right: .5rem;
             border-radius: 50%;
+            background-color: #ffffff;
+            animation: fs-dot-load 1s ease infinite;
         }
-        .fs-creep-1 {
-            animation: fs-creep-loading 1s linear 0s infinite;
-        }
-        @keyframes fs-creep-loading {
+        .dot-wrap span:nth-child(1){ animation-delay: 0.13s; }
+        .dot-wrap span:nth-child(2){ animation-delay: 0.26s; }
+        .dot-wrap span:nth-child(3){ animation-delay: 0.39s; }
+        .dot-wrap span:nth-child(4){ animation-delay: 0.52s; }
+        .dot-wrap span:nth-child(5){ animation-delay: 0.65s; margin-right: 0; }
+        @keyframes fs-dot-load {
+            30% {
+                opacity: 1;
+                transform: scale(2.5);
+            }
             100% {
+                opacity: .2;
+                transform: scale(1);
+            }
+        }
+
+
+        .ball-flex-wrap {
+            width: 5rem;
+            height: 5rem;
+            text-align: left;
+        }
+        .ball-flex-wrap span {
+            position: absolute;
+            left: 0;
+            width: .5rem;
+            height: .5rem;
+            border-radius: 50%;
+            background-color: #ffffff;
+            animation: fs-ballflex-load 1s ease-in-out infinite alternate;
+        }
+        .ball-flex-wrap span:nth-child(1){ animation-delay: 0.13s; }
+        .ball-flex-wrap span:nth-child(2){ animation-delay: 0.26s; }
+        .ball-flex-wrap span:nth-child(3){ animation-delay: 0.39s; }
+        .ball-flex-wrap span:nth-child(4){ animation-delay: 0.52s; }
+        .ball-flex-wrap span:nth-child(5){ animation-delay: 0.65s; }
+        @keyframes fs-ballflex-load {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(5rem);
+            }
+        }
+
+
+        .ball-light-wrap span {
+            display: inline-block;
+            width: .5rem;
+            height: .5rem;
+            border-radius: 50%;
+            margin-right: .5rem;
+            background-color: #ffffff;
+            animation: fs-balllight-load 6s cubic-bezier(1,0,1,-.2) infinite;
+        }
+        .ball-light-wrap span:nth-child(1){ animation-delay: .5s; }
+        .ball-light-wrap span:nth-child(2){ animation-delay: 1s; }
+        .ball-light-wrap span:nth-child(3){ animation-delay: 1.5s; }
+        .ball-light-wrap span:nth-child(4){ animation-delay: 2s; }
+        .ball-light-wrap span:nth-child(5){ animation-delay: 2.5s; margin-right: 0; }
+        @keyframes fs-balllight-load {
+            0% {
+                background-color: #3d77e0;
+            }
+            50% {
+                background-color: #ffffff;
+            }
+        }
+
+
+        .line-wrap {
+            /* height = span.height + keyframes.margin-top ;这样可以保持底部不抖动 */
+            height: 3rem;
+        }
+        .line-wrap span {
+            display: inline-block;
+            margin-top: 2.5rem;
+            width: .5rem;
+            height: 1rem;
+            margin-top: 2rem;
+            border-radius: .25rem;
+            margin-right: .3rem;
+            background-color: #ffffff;
+            animation: fs-line-load 1s linear infinite;
+        }
+        .line-wrap span:nth-child(2){ animation-delay: .2s }
+        .line-wrap span:nth-child(3){ animation-delay: .4s }
+        .line-wrap span:nth-child(4){ animation-delay: .6s }
+        .line-wrap span:nth-child(5){ animation-delay: .8s; margin-right: 0; }
+        @keyframes fs-line-load {
+            50% {
+                height: 2rem;
+                margin-top: 1rem;
+                background-color: #3d77e0;
+            }
+            100% {
+                height: 1rem;
+                margin-top: 2rem;
+                background-color: #ffffff;
+            }
+        }
+
+
+        .prog-wrap {
+            width: 7rem;
+            height: .5rem;
+            border-radius: .25rem;
+            background-color: white;
+            overflow: hidden;
+        }
+        .prog-wrap span {
+            display: block;
+            width: 3rem;
+            height: .5rem;
+            border-radius: .25rem;
+            background-color: #3d77e0;
+            animation: fs-prog-load 1s ease infinite;
+        }
+        @keyframes fs-prog-load {
+            0% {
+                transform: translateX(-3rem);
+            }
+            50% {
+                transform: translateX(1rem);
+            }
+            100% {
+                transform: translateX(7rem);
+            }
+        }
+
+
+        .geer-wrap span {
+            display: inline-block;
+            width: 1rem;
+            height: .5rem;
+            border-top-left-radius: .25rem;
+            border-bottom-left-radius: .25rem;
+            background-color: #ffffff;
+            position: absolute;
+            animation: fs-geer-load 1.04s linear infinite;
+        }
+        .geer-wrap span:nth-child(1) {
+            left: 0;
+            top: 50%;
+            animation-delay: .13s;
+
+        }
+        .geer-wrap span:nth-child(2) {
+            left: 10%;
+            top: 20%;
+            transform: rotate(45deg);
+            animation-delay: .26s;
+        }
+        .geer-wrap span:nth-child(3) {
+            left: 40%;
+            top: 10%;
+            transform: rotate(90deg);
+            animation-delay: .39s;
+        }
+        .geer-wrap span:nth-child(4) {
+            right: 10%;
+            top: 20%;
+            transform: rotate(135deg);
+            animation-delay: .52s;
+        }
+        .geer-wrap span:nth-child(5) {
+            right: 0;
+            top: 50%;
+            transform: rotate(180deg);
+            animation-delay: .65s;
+        }
+        .geer-wrap span:nth-child(6) {
+            right: 10%;
+            bottom: 10%;
+            transform: rotate(225deg);
+            animation-delay: .78s;
+        }
+        .geer-wrap span:nth-child(7) {
+            left: 40%;
+            bottom: 0;
+            transform: rotate(270deg);
+            animation-delay: .91s;
+        }
+        .geer-wrap span:nth-child(8) {
+            left: 10%;
+            bottom: 10%;
+            transform: rotate(315deg);
+            animation-delay: 1.04s;
+        }
+        @keyframes fs-geer-load {
+            0% {
+                background-color: #3d77e0;
+            }
+            100% {
+                background-color: #ffffff;
+            }
+        }
+
+
+
+        .holder {
+            position: absolute;
+            width: 5rem;
+            height: .5rem;
+            text-align: left;
+            animation: fs-ballhide-load 3s linear infinite;
+        }
+        div:nth-of-type(1){
+            animation-delay: .13s;
+        }
+        div:nth-of-type(2) {
+            animation-delay: .26s;
+        }
+        div:nth-of-type(3) {
+            animation-delay: .39s;
+        }
+        div:nth-of-type(4) {
+            animation-delay: .52s;
+        }
+        div:nth-of-type(5) {
+            animation-delay: .65s;
+        }
+
+        .holder span{
+            display: block;
+            width: .5rem;
+            height: .5rem;
+            border-radius: 50%;
+            background-color: #ffffff;
+        }
+        @keyframes fs-ballhide-load {
+            0% {
+                transform: rotate(0);
+            }
+            50% {
+                opacity: 1;
+                transform: rotate(360deg);
+            }
+            50.1% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 0;
                 transform: rotate(360deg);
             }
         }

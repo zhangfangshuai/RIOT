@@ -20,7 +20,12 @@
             'left': width
         }
         self.on('mount', function() {
-            return self.mainMsgBus.trigger('go', 'intro')
+            if (APP.data.online) {
+                return self.mainMsgBus.trigger('go', 'intro')
+            } else {
+                APP.error = LANG.neterr
+                return self.mainMsgBus.trigger('go', 'error')
+            }
         })
 
         self.on('unmount', function() {
