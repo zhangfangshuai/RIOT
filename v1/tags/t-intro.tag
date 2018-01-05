@@ -20,10 +20,10 @@
       self.toNext = function() {
           var loadindex = parseInt(Math.random() * (loadtype.length + 1))   // 生成loadtype.length随机整数
           self.modalMsgBus.trigger(loadtype[loadindex])
-          self.modalMsgBus.trigger('flipcube-loading')
-          // setTimeout(function(){
-          //   self.modalMsgBus.trigger('close')
-          // }, 2000)
+          // self.modalMsgBus.trigger('flipcube-loading')
+          setTimeout(function(){
+            self.modalMsgBus.trigger('close')
+          }, 2000)
       }
   </script>
   <style>
