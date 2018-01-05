@@ -93,24 +93,41 @@
     </div>
 
     <div class="wrap ballhide-wrap" if="{show && current=='ballHideLoading'}">
-        <div class="holder">
+        <div class="bh-holder">
             <span></span>
         </div>
-        <div class="holder">
+        <div class="bh-holder">
             <span></span>
         </div>
-        <div class="holder">
+        <div class="bh-holder">
             <span></span>
         </div>
-        <div class="holder">
+        <div class="bh-holder">
             <span></span>
         </div>
-        <div class="holder">
+        <div class="bh-holder">
             <span></span>
         </div>
-        <div class="holder">
+        <div class="bh-holder">
             <span></span>
         </div>
+    </div>
+
+    <div class="wrap ballcollide-wrap" if="{show && current=='ballCollideLoading'}">
+        <span></span>
+        <span></span>
+    </div>
+
+    <div class="wrap rollgradient-wrap" if="{show && current=='rollGradientLoading'}">
+        <span></span>
+    </div>
+
+    <div class="wrap rolllack-wrap" if="{show && current=='rollLackLoading'}">
+        <span></span>
+    </div>
+
+    <div class="wrap rollelongate-wrap" if="{show && current=='rollElongateLoading'}">
+        <span></span>
     </div>
     <script>
         var self = this
@@ -195,7 +212,30 @@
                         current: 'ballHideLoading'
                     })
                     break
-
+                case 'ballcollide-loading':
+                    self.update({
+                        show: true,
+                        current: 'ballCollideLoading'
+                    })
+                    break
+                case 'rollgradient-loading':
+                    self.update({
+                        show: true,
+                        current: 'rollGradientLoading'
+                    })
+                    break
+                case 'rolllack-loading':
+                    self.update({
+                        show: true,
+                        current: 'rollLackLoading'
+                    })
+                    break
+                case 'rollelongate-loading':
+                    self.update({
+                        show: true,
+                        current: 'rollElongateLoading'
+                    })
+                    break
             }
         })
     </script>
@@ -617,38 +657,32 @@
 
 
 
-        .holder {
+        .bh-holder {
             position: absolute;
-            width: 5rem;
-            height: .5rem;
-            text-align: left;
-            animation: fs-ballhide-load 3s linear infinite;
+            left: 50%;
+            width: .5rem;
+            height: 5rem;
+            opacity: 0;
+            animation: fs-ballhide-load 2s linear infinite;
         }
-        div:nth-of-type(1){
-            animation-delay: .13s;
-        }
-        div:nth-of-type(2) {
-            animation-delay: .26s;
-        }
-        div:nth-of-type(3) {
-            animation-delay: .39s;
-        }
-        div:nth-of-type(4) {
-            animation-delay: .52s;
-        }
-        div:nth-of-type(5) {
-            animation-delay: .65s;
-        }
+        .ballhide-wrap div:nth-of-type(1) { animation-delay: .13s; }
+        .ballhide-wrap div:nth-of-type(2) { animation-delay: .26s; }
+        .ballhide-wrap div:nth-of-type(3) { animation-delay: .39s; }
+        .ballhide-wrap div:nth-of-type(4) { animation-delay: .52s; }
+        .ballhide-wrap div:nth-of-type(5) { animation-delay: .65s; }
 
-        .holder span{
-            display: block;
+        .bh-holder span{
+            position: absolute;
+            bottom: 0;
             width: .5rem;
             height: .5rem;
             border-radius: 50%;
-            background-color: #ffffff;
+            background-color: #3d77e0;
+            /*animation: fs-ballhide-ball-load 2s linear infinite;*/
         }
         @keyframes fs-ballhide-load {
             0% {
+                opacity: 1;
                 transform: rotate(0);
             }
             50% {
@@ -660,6 +694,245 @@
             }
             100% {
                 opacity: 0;
+                transform: rotate(360deg);
+            }
+        }
+        @keyframes fs-ballhide-ball-load {
+            0% {
+                background-color: #3d77e0;
+            }
+            100% {
+                background-color: lightblue;
+            }
+        }
+
+
+        .ballcollide-wrap span {
+            display: inline-block;
+            width: 1rem;
+            height: 1rem;
+            border-radius: 50%;
+            background-color: #3d77e0;
+        }
+        .ballcollide-wrap span:nth-child(1) {
+            background-color: lightcoral;
+            animation: fs-ballcolide-load-1 1s ease-in infinite;
+        }
+        .ballcollide-wrap span:nth-child(2) {
+            background-color: lightcoral;
+            animation: fs-ballcolide-load-2 1s ease-in infinite;
+        }
+        @keyframes fs-ballcolide-load-1 {
+            0% {
+                transform: translateX(0rem);
+                background-color: lightyellow;
+            }
+            25% {
+                transform: translateX(-4rem);
+                background-color: lightcoral;
+            }
+            50% {
+              transform: translateX(0rem);
+              background-color: lightgreen;
+            }
+            100% {
+              transform: translateX(0rem);
+              background-color: lightgreen;
+            }
+        }
+        @keyframes fs-ballcolide-load-2 {
+            0% {
+                transform: translateX(0);
+                background-color: #3d77e0;
+            }
+            50% {
+                transform: translateX(0);
+                background-color: #3d77e0;
+            }
+            50.1% {
+                transform: translateX(0);
+                background-color: lightcyan;
+            }
+            75% {
+                transform: translateX(4rem);
+                background-color: lightseagreen;
+            }
+            100% {
+                transform: translateX(0rem);
+                background-color: lightseagreen;
+            }
+        }
+
+
+
+        .rollgradient-wrap span{
+            display: block;
+            width: 5rem;
+            height: 5rem;
+            text-indent: -9999em;
+            border-radius: 50%;
+            background-color: #ffffff;
+            /*linear-gradient有hack，注意适配*/
+            background: -moz-linear-gradient(left, #ffffff 10%, rgba(255, 255, 255, 0) 42%);
+            background: -webkit-linear-gradient(left, #ffffff 10%, rgba(255, 255, 255, 0) 41%);
+            background: -o-linear-gradient(left, #ffffff 10%, rgba(255, 255, 255, 0) 42%);
+            background: -ms-linear-gradient(left, #ffffff 10%, rgba(255, 255, 255, 0) 42%);
+            background: linear-gradient(to right, #ffffff 10%, rgba(255, 255, 255, 0) 42%);
+            animation: fs-rollgradient-load 1.4s infinite linear;
+            -webkit-animation: fs-rollgradient-load 1.4s infinite linear;
+            -webkit-transform: translateZ(0);
+            -ms-transform: translateZ(0);
+            transform: translateZ(0);
+        }
+        /*最底层*/
+        .rollgradient-wrap span:before {
+            width: 50%;
+            height: 50%;
+            background-color: #ffffff;
+            border-radius: 100% 0 0 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            content: ''
+        }
+        /*最上层*/
+        .rollgradient-wrap span:after {
+            background-color: #c3c3c3;
+            width: 75%;
+            height: 75%;
+            border-radius: 50%;
+            content: '';
+            margin: auto;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+        }
+        @keyframes fs-rollgradient-load {
+          0% {
+              -webkit-transform: rotate(0deg);
+              transform: rotate(0deg);
+          }
+          100% {
+              -webkit-transform: rotate(360deg);
+              transform: rotate(360deg);
+          }
+        }
+
+
+
+        .rolllack-wrap span {
+            display: block;
+            width: 5rem;
+            height: 5rem;
+            border-radius: 50%;
+            border-left: .5rem solid rgba(255,255,255,0.2);
+            border-top: .5rem solid rgba(255,255,255,0.2);
+            border-right: .5rem solid rgba(255,255,255,0.2);
+            border-bottom: .5rem solid rgba(255,255,255,1);
+            animation: fs-rolllack-load 1s linear infinite;
+        }
+        @keyframes fs-rolllack-load {
+            100% {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+
+
+
+        .rollelongate-wrap span {
+            display: block;
+            width: 5rem;
+            height: 5rem;
+            border-radius: 50%;
+            border: .5rem solid #ffffff;
+            animation: fs-rollelongate-parent-load 8s linear infinite;
+        }
+        .rollelongate-wrap span:before {
+            width: 3rem;
+            height: 5.5rem;
+            border-radius: 5rem 0 0 5rem;
+            background-color: #c3c3c3;
+            position: absolute;
+            /*top: -.3rem;*/   /*如果.rollelongate-wrap span的animation不开用这个*/
+            top: -.8rem;
+            left: -.9rem;
+            content: '';
+            transform-origin: right center;
+            -webkit-transform-origin: right center;
+            transform: rotate(30deg);
+            animation: fs-rollelongate-load 1.6s ease-in-out infinite;
+            -webkit-animation: fs-rollelongate-load 1.6s ease-in-out infinite;
+        }
+        .rollelongate-wrap span:after {
+            width: 3rem;
+            height: 5.5rem;
+            border-radius: 0 5rem 5rem 0;
+            background-color: #c3c3c3;
+            position: absolute;
+            /*top: -.2rem;*/   /*如果.rollelongate-wrap span的animation不开用这个*/
+            top: -.8rem;
+            content: '';
+            transform-origin: left center;
+            -webkit-transform-origin: left center;
+            animation: fs-rollelongate-load 1.6s .2s ease-in-out infinite;
+            -webkit-animation: fs-rollelongate-load 1.6s .5s ease-in-out infinite;
+        }
+        @keyframes fs-rollelongate-load {
+            0% {
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+            100% {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+        @keyframes fs-rollelongate-parent-load {
+            0% {
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+            10% {
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+            20% {
+                -webkit-transform: rotate(72deg);
+                transform: rotate(72deg);
+            }
+            30% {
+                -webkit-transform: rotate(72deg);
+                transform: rotate(72deg);
+            }
+            40% {
+                -webkit-transform: rotate(144deg);
+                transform: rotate(144deg);
+            }
+            50% {
+                -webkit-transform: rotate(144deg);
+                transform: rotate(144deg);
+            }
+            60% {
+                -webkit-transform: rotate(216deg);
+                transform: rotate(216deg);
+            }
+            70% {
+                -webkit-transform: rotate(216deg);
+                transform: rotate(216deg);
+            }
+            80% {
+                -webkit-transform: rotate(288deg);
+                transform: rotate(288deg);
+            }
+            90% {
+                -webkit-transform: rotate(288deg);
+                transform: rotate(288deg);
+            }
+            100% {
+                -webkit-transform: rotate(360deg);
                 transform: rotate(360deg);
             }
         }

@@ -9,15 +9,18 @@
   </div>
   <script>
       var self = this
-      var loadtype = ['ball-loading', 'ring-loading', 'ringball-loading', 'linego-loading', 'dot-loading', 'ballflex-loading', 'balllight-loading']
+      var loadtype = ['ball-loading', 'ring-loading', 'ringball-loading', 'linego-loading', 'dot-loading',
+                      'ballflex-loading', 'balllight-loading', 'line-loading', 'prog-loading', 'geer-loading',
+                      'ballhide-loading', 'ballcollide-loading', 'rollgradient-loading', 'rolllack-loading', 'rollelongate-loading',
+                      ]
 
       self.text_intro = LANG.text_intro
       self.text_btn = LANG.text_btn
 
       self.toNext = function() {
-          var loadindex = parseInt(Math.random() * 4)   // 生成[0-3]随机整数
+          var loadindex = parseInt(Math.random() * (loadtype.length + 1))   // 生成loadtype.length随机整数
           self.modalMsgBus.trigger(loadtype[loadindex])
-          self.modalMsgBus.trigger('ballhide-loading')
+          self.modalMsgBus.trigger('rollelongate-loading')
           // setTimeout(function(){
           //   self.modalMsgBus.trigger('close')
           // }, 2000)
