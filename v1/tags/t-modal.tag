@@ -324,8 +324,7 @@
             position: absolute;
             width: 1rem;
             height: 4rem;
-            left: 3rem;
-            top: 1.3rem;
+            left: 2rem;
         }
         .fs-ball-a, .fs-ball-b, .fs-ball-c, .fs-ball-d, .fs-ball-e {
             position: absolute;
@@ -922,7 +921,7 @@
             border-radius: 50%;
             border: .5rem solid #ffffff;
             animation: fs-rollelongate-parent-load 8s linear infinite;
-        }whitesmoke
+        }
         .rollelongate-wrap span:before {
             width: 3rem;
             height: 5.5rem;

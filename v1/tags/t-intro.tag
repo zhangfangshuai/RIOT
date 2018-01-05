@@ -20,8 +20,12 @@
 
       self.toNext = function() {
           var loadindex = parseInt(Math.random() * (loadtype.length + 1))   // 生成loadtype.length随机整数
-          index = index >= loadtype.length ? 0 : index ++
-          self.modalMsgBus.trigger(loadtype[loadindex])
+          self.modalMsgBus.trigger(loadtype[index])
+          if (index > loadtype.length - 1) {
+              index = 0
+          } else {
+              index ++
+          }
           // self.modalMsgBus.trigger('flipcube-loading')
           setTimeout(function(){
             self.modalMsgBus.trigger('close')
