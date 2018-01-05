@@ -9,6 +9,7 @@
   </div>
   <script>
       var self = this
+      var index = 0
       var loadtype = ['ball-loading', 'ring-loading', 'ringball-loading', 'linego-loading', 'dot-loading',
                       'ballflex-loading', 'balllight-loading', 'line-loading', 'lineboth-loading', 'prog-loading',
                       'geer-loading', 'ballhide-loading', 'ballcollide-loading', 'rollgradient-loading', 'rolllack-loading',
@@ -19,11 +20,12 @@
 
       self.toNext = function() {
           var loadindex = parseInt(Math.random() * (loadtype.length + 1))   // 生成loadtype.length随机整数
+          index = index >= loadtype.length ? 0 : index ++
           self.modalMsgBus.trigger(loadtype[loadindex])
           // self.modalMsgBus.trigger('flipcube-loading')
           setTimeout(function(){
             self.modalMsgBus.trigger('close')
-          }, 2000)
+          }, 4000)
       }
   </script>
   <style>
