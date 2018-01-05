@@ -76,6 +76,13 @@
         <span></span>
         <span></span>
     </div>
+    <div class="wrap lineboth-wrap" if="{show && current=='lineBothLoading'}">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
 
     <div class="wrap prog-wrap" if="{show && current=='progLoading'}">
         <span></span>
@@ -127,6 +134,21 @@
     </div>
 
     <div class="wrap rollelongate-wrap" if="{show && current=='rollElongateLoading'}">
+        <span></span>
+    </div>
+
+    <div class="wrap heartbeat-wrap" if="{show && current=='heartBeatLoading'}">
+        <span></span>
+    </div>
+
+    <div class="wrap flip-wrap" if="{show && current=='flipLoading'}">
+        <span></span>
+    </div>
+
+    <div class="wrap flipcube-wrap" if="{show && current=='flipCubeLoading'}">
+        <span></span>
+        <span></span>
+        <span></span>
         <span></span>
     </div>
     <script>
@@ -194,6 +216,12 @@
                         current: 'lineLoading'
                     })
                     break
+                case 'lineboth-loading':
+                    self.update({
+                        show: true,
+                        current: 'lineBothLoading'
+                    })
+                    break
                 case 'prog-loading':
                     self.update({
                         show: true,
@@ -234,6 +262,24 @@
                     self.update({
                         show: true,
                         current: 'rollElongateLoading'
+                    })
+                    break
+                case 'heartbeat-loading':
+                    self.update({
+                        show: true,
+                        current: 'heartBeatLoading'
+                    })
+                    break
+                case 'flip-loading':
+                    self.update({
+                        show: true,
+                        current: 'flipLoading'
+                    })
+                    break
+                case 'flipcube-loading':
+                    self.update({
+                        show: true,
+                        current: 'flipCubeLoading'
                     })
                     break
             }
@@ -528,7 +574,7 @@
 
 
         .line-wrap {
-            /* height = span.height + keyframes.margin-top ;这样可以保持底部不抖动 */
+            /* height = span.height + keyframes.margin-top ;可以保持底部不抖动 */
             height: 3rem;
         }
         .line-wrap span {
@@ -558,6 +604,33 @@
                 background-color: #ffffff;
             }
         }
+
+
+
+        .lineboth-wrap span {
+            display: inline-block;
+            width: .5rem;
+            height: 1.5rem;
+            margin-right: .3rem;
+            background-color: #3d77e0;
+            animation: fs-lineboth-load 1s ease-in-out infinite;
+        }
+        .lineboth-wrap span:nth-child(2) { animation-delay: .1s; }
+        .lineboth-wrap span:nth-child(3) { animation-delay: .2s; }
+        .lineboth-wrap span:nth-child(4) { animation-delay: .3s; }
+        .lineboth-wrap span:nth-child(5) { animation-delay: .4s; margin-right: 0; }
+        @keyframes fs-lineboth-load {
+            25% {
+                transform: scaleY(2.5);
+                background-color: antiquewhite;
+            }
+            50% {
+                transform: scaleY(1);
+                background-color: #3d77e0;
+            }
+        }
+
+
 
 
         .prog-wrap {
@@ -849,7 +922,7 @@
             border-radius: 50%;
             border: .5rem solid #ffffff;
             animation: fs-rollelongate-parent-load 8s linear infinite;
-        }
+        }whitesmoke
         .rollelongate-wrap span:before {
             width: 3rem;
             height: 5.5rem;
@@ -934,6 +1007,129 @@
             100% {
                 -webkit-transform: rotate(360deg);
                 transform: rotate(360deg);
+            }
+        }
+
+
+
+        .heartbeat-wrap span {
+            display: block;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            margin: 0 auto;
+            background-color: whitesmoke;
+            animation: fs-heartbeat-load 1s ease-in-out infinite;
+        }
+        .heartbeat-wrap span:after {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            width: 1rem;
+            height: 1rem;
+            border-radius: 50%;
+            content: '';  /*必须要写*/
+            background-color: #fad7ed;
+            animation: fs-heartbeat-after-load 1s ease-in-out infinite;
+        }
+        @keyframes fs-heartbeat-load {
+            25% {
+                transform: scale(1.5);
+            }
+            35% {
+                transform: scale(1.3);
+            }
+            40% {
+                transform: scale(1.5);
+            }
+            50% {
+                transform: scale(1);
+            }
+        }
+        @keyframes fs-heartbeat-after-load {
+            40% {
+                opacity: 0;
+                transform: scale(4.5);
+            }
+        }
+
+
+
+        .flip-wrap span {
+            display: block;
+            width: 4rem;
+            height: 4rem;
+            border-radius: .4rem;
+            background-color: #3d77e0;
+            animation: fs-flip-load 2s ease-in-out infinite;
+        }
+        @keyframes fs-flip-load {
+            25% {
+                /*perspective 元素距离视图的距离*/
+                background-color: aquamarine;
+                transform: perspective(8rem) rotateX(-180deg) rotateY(0deg);
+            }
+            50% {
+                background-color: bisque;
+                transform: perspective(8rem) rotateX(-180deg) rotateY(-180deg);
+            }
+            75% {
+                background-color: burlywood;
+                transform: perspective(8rem) rotateX(0deg) rotateY(-180deg);
+            }
+            100% {
+                background-color: #3d77e0;
+                transform: perspective(8rem) rotateX(0deg) rotateY(-360deg);
+            }
+        }
+
+
+        .flipcube-wrap {
+            top: 45%;
+            left: 39%;
+            transform: rotateZ(45deg);
+        }
+        .flipcube-wrap span {
+            display: inline-block;
+            position: relative;
+            width: 50%;
+            height: 50%;
+            transform: scale(1.1);
+        }
+        .flipcube-wrap span:nth-child(2) { transform: scale(1.1) rotateZ(90deg); }
+        .flipcube-wrap span:nth-child(3) { transform: scale(1.1) rotateZ(270deg); }
+        .flipcube-wrap span:nth-child(4) { transform: scale(1.1) rotateZ(180deg); }
+        .flipcube-wrap span:before {
+            position: absolute;
+            content: '';
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #3d77e0;
+            transform-origin: 100% 100%;
+            -webkit-transform-origin: 100% 100%;
+            animation: fs-flipcube-load 2.4s linear infinite both;
+            -webkit-animation: fs-flipcube-load 2.4s linear infinite both;
+        }
+        .flipcube-wrap span:nth-child(2):before { animation-delay: 0.3s; -webkit-animation-delay: 0.3s; }
+        .flipcube-wrap span:nth-child(4):before { animation-delay: 0.6s; -webkit-animation-delay: 0.6s; }
+        .flipcube-wrap span:nth-child(3):before { animation-delay: 0.9s; -webkit-animation-delay: 0.9s; }
+        @-webkit-keyframes fs-flipcube-load {
+            0%, 10% {
+                -webkit-transform: perspective(140px) rotateX(-180deg);
+                transform: perspective(140px) rotateX(-180deg);
+                opacity: 0;
+            }
+            25%, 75% {
+                -webkit-transform:perspective(140px) rotateX(0deg);
+                transform:perspective(140px) rotateX(0deg);
+                opacity:1;
+            }
+            90%, 100% {
+                -webkit-transform:perspective(140px) rotateY(180deg);
+                transform:perspective(140px) rotateY(180deg);
+                opacity:0
             }
         }
     </style>
