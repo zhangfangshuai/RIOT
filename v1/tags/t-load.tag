@@ -308,7 +308,7 @@
         .wrap {
             position: absolute;
             display: block;
-            top: 50%;
+            top: 47%;
             left: 50%;
             transform: translate(-50%, -50%);
 
@@ -645,17 +645,21 @@
             height: .5rem;
             border-radius: .25rem;
             background-color: #3d77e0;
-            animation: fs-prog-load 1s ease infinite;
+            animation: fs-prog-load 3s linear infinite;
+            -webkit-animation: fs-prog-load 3s linear infinite;
         }
         @keyframes fs-prog-load {
             0% {
                 transform: translateX(-3rem);
+                -webkit-transform: translateX(-3rem);
             }
-            50% {
-                transform: translateX(1rem);
+            70% {
+                transform: translateX(7rem);
+                -webkit-transform: translateX(7rem);
             }
             100% {
                 transform: translateX(7rem);
+                -webkit-transform: translateX(7rem);
             }
         }
 
@@ -735,13 +739,13 @@
             width: .5rem;
             height: 5rem;
             opacity: 0;
-            animation: fs-ballhide-load 2s linear infinite;
+            animation: fs-ballhide-load 3s cubic-bezier(0.4, 0.35, 0.35, 0.45) infinite;
         }
-        .ballhide-wrap div:nth-of-type(1) { animation-delay: .13s; }
-        .ballhide-wrap div:nth-of-type(2) { animation-delay: .26s; }
-        .ballhide-wrap div:nth-of-type(3) { animation-delay: .39s; }
-        .ballhide-wrap div:nth-of-type(4) { animation-delay: .52s; }
-        .ballhide-wrap div:nth-of-type(5) { animation-delay: .65s; }
+        .ballhide-wrap div:nth-of-type(1) { animation-delay: .08s; }
+        .ballhide-wrap div:nth-of-type(2) { animation-delay: .16s; }
+        .ballhide-wrap div:nth-of-type(3) { animation-delay: .24s; }
+        .ballhide-wrap div:nth-of-type(4) { animation-delay: .32s; }
+        .ballhide-wrap div:nth-of-type(5) { animation-delay: .4s; }
 
         .bh-holder span{
             position: absolute;
@@ -757,16 +761,16 @@
                 opacity: 1;
                 transform: rotate(0);
             }
-            50% {
+            60% {
                 opacity: 1;
-                transform: rotate(360deg);
+                transform: rotate(720deg);
             }
-            50.1% {
+            60.1% {
                 opacity: 0;
             }
             100% {
                 opacity: 0;
-                transform: rotate(360deg);
+                transform: rotate(720deg);
             }
         }
         @keyframes fs-ballhide-ball-load {

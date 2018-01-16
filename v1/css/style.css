@@ -106,23 +106,6 @@ textarea {
     justify-content: center;
 }
 
-.middle {
-    display: -webkit-flex;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-box;
-    display: flex;
-    -webkit-box-direction: normal;
-    -webkit-box-orient: vertical;
-    -moz-flex-direction: column;
-    -webkit-flex-direction: column;
-    flex-direction: column;
-    -webkit-box-pack: center;
-    -moz-justify-content: center;
-    -webkit-justify-content: center;
-    justify-content: center;
-}
-
 .shadow {
     box-shadow: 0 .1rem .2rem 0 rgba(0, 0, 0, 0.1), 0 .2rem .4rem 0 rgba(0, 0, 0, 0.1);
 }

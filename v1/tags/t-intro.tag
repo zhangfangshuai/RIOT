@@ -1,49 +1,45 @@
 <t-intro>
   <div class="content">
-      <div class="page-modal center middle">
+      <div class="page-modal center">
           <p>{text_intro}</p>
       </div>
       <div class="foot">
-          <div class="btn middle" onclick={toNext}>{text_btn}</div>
+          <div class="btn center" onclick={toNext}>{text_btn}</div>
       </div>
   </div>
   <script>
       var self = this
       var index = 0
       var loadtype = ['ball-loading', 'ring-loading', 'ringball-loading', 'linego-loading', 'dot-loading',
-                      'ballflex-loading', 'balllight-loading', 'line-loading', 'lineboth-loading', 'prog-loading',
+                      'balllight-loading', 'line-loading', 'lineboth-loading', 'prog-loading',
                       'geer-loading', 'ballhide-loading', 'ballcollide-loading', 'rollgradient-loading', 'rolllack-loading',
-                      'rollelongate-loading', 'heartbeat-loading', 'flip-loading', 'flipcube-loading']
+                      'heartbeat-loading', 'flip-loading', 'flipcube-loading']
 
       self.text_intro = LANG.text_intro
       self.text_btn = LANG.text_btn
 
       self.toNext = function() {
-          var loadindex = parseInt(Math.random() * (loadtype.length + 1))   // 生成loadtype.length随机整数
-          self.modalMsgBus.trigger(loadtype[index])
-          if (index > loadtype.length - 1) {
-              index = 0
-          } else {
-              index ++
-          }
-          // self.modalMsgBus.trigger('flipcube-loading')
+          var index = parseInt(Math.random() * (loadtype.length + 1))   // 生成0到 loadtype.length随机整数
+          self.loadMsgBus.trigger(loadtype[index])
+          // self.loadMsgBus.trigger('geer-loading')
           setTimeout(function(){
-            self.modalMsgBus.trigger('close')
-          }, 4000)
+              self.loadMsgBus.trigger('close')
+              self.modalMsgBus.trigger('notice')
+          }, 3000)
       }
   </script>
   <style>
       .content {
           position: relative;
           display: block;
-          width:100%;
-          height:100%;
+          width:100vw;
+          height:100vh;
           padding: 0 .67rem;
       }
 
       .page-modal {
           width: 100%;
-          height: 80%;
+          height: 84%;
       }
 
       .page-modal p {
