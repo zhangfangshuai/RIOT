@@ -45,7 +45,6 @@
                 return
             }
             if (ref == self.pages[self.pages.length - 1]) {
-                console.log('trigger back')
                 return self.mainMsgBus.trigger('back')
             }
             self.switching = true

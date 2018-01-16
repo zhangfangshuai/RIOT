@@ -15,10 +15,12 @@
     if (!doc.addEventListener) return
     doc.addEventListener('DOMContentLoaded', recalc, false)
 })(document, window);
+
 var width = '30rem'
 var msgBus = {
         mainMsgBus: riot.observable(),
-        modalMsgBus: riot.observable()
+        modalMsgBus: riot.observable(),
+        loadMsgBus: riot.observable(),
     },
     APP = {
         data: {
@@ -41,7 +43,7 @@ var msgBus = {
     LANG = {}
 
 function refreshLang() {
-    // switch ('zh-cn') {
+    // APP.data.language = 'zh-cn'
     switch (APP.data.language) {
         case 'zh-cn':
             LANG = zhcn
@@ -217,6 +219,7 @@ function init() {
     CONFIG['apis'] = APIS['default']
     msgBus.mainMsgBus.on('*', addEvent)
     msgBus.modalMsgBus.on('*', addEvent)
+    msgBus.loadMsgBus.on('*', addEvent)
     riot.mixin(msgBus)
     riot.mount('*')
 }
