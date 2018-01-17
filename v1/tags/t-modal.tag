@@ -18,9 +18,6 @@
 
         self.close = function() {
             self.amplify(false, '')
-            // self.update({
-            //     show: false
-            // })
         }
 
         self.on('unmount', function() {
