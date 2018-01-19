@@ -1,8 +1,8 @@
 <t-modal>
     <div class="overlay {unol: ifol}" if="{show}" riot-style="{overlay}"></div>
 
-    <div class="content" if="{show}" riot-style="{modal}">
-        <div class="notice" if="{current=='notice'}">
+    <div class="content" if="{show && current=='notice'}" riot-style="{modal}">
+        <div class="notice">
             <div class="notice-text center"><p>弹窗信息</p></div>
             <div class="notice-close" onclick="{close}">
                 <p>我知道了</p>
@@ -17,7 +17,7 @@
         self.current = ''
 
         self.close = function() {
-            self.amplify(false, '')
+            self.amplify(false, self.current)
         }
 
         self.on('unmount', function() {
@@ -39,6 +39,9 @@
                 case 'notice':
                     setModal('notice')
                     break
+                case 'close':
+                    self.close()
+                    break
             }
         })
 
@@ -54,7 +57,7 @@
                     '-webkit-animation': 'light-ol .23s linear',
                     'animation-fill-mode': 'forwards',
                     '-webkit-animation-fill-mode': 'forwards'
-                }
+                },
                 ampReserve = {
                     'animation': 'ampReserve .15s linear',
                     '-webkit-animation': 'ampReserve .15s linear',
@@ -87,8 +90,6 @@
                 }, 230)
             }
         }
-
-
     </script>
     <style>
         .overlay {
