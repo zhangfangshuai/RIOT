@@ -11,7 +11,7 @@
       var self = this
       var index = 0
       var loadtype = ['ball-loading', 'ring-loading', 'ringball-loading', 'linego-loading', 'dot-loading',
-                      'balllight-loading', 'line-loading', 'lineboth-loading', 'prog-loading',
+                      'balllight-loading', 'line-loading', 'lineboth-loading', 'prog-loading', 'rollelongate-loading',
                       'geer-loading', 'ballhide-loading', 'ballcollide-loading', 'rollgradient-loading', 'rolllack-loading',
                       'heartbeat-loading', 'flip-loading', 'flipcube-loading']
 
@@ -21,7 +21,7 @@
       self.toNext = function() {
           var index = parseInt(Math.random() * (loadtype.length + 1))   // 生成0到 loadtype.length随机整数
           self.loadMsgBus.trigger(loadtype[index])
-          // self.loadMsgBus.trigger('geer-loading')
+          // self.loadMsgBus.trigger('rollelongate-loading')
           setTimeout(function(){
               self.loadMsgBus.trigger('close')
               self.modalMsgBus.trigger('notice')

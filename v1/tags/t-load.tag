@@ -916,20 +916,22 @@
             }
         }
 
-
-
+        .rollelongate-wrap {
+            position: absolute;
+            top: 50%;
+        }
         .rollelongate-wrap span {
             display: block;
             width: 5rem;
             height: 5rem;
             border-radius: 50%;
             border: .5rem solid #ffffff;
-            animation: fs-rollelongate-parent-load 8s linear infinite;
+            animation: fs-rollelongate-parent-load 5s linear infinite;
         }
         .rollelongate-wrap span:before {
             width: 3rem;
             height: 5.5rem;
-            border-radius: 5rem 0 0 5rem;
+            border-radius: 5.5rem 0 0 5.5rem;
             background-color: #c3c3c3;
             position: absolute;
             /*top: -.3rem;*/   /*如果.rollelongate-wrap span的animation不开用这个*/
@@ -938,14 +940,14 @@
             content: '';
             transform-origin: right center;
             -webkit-transform-origin: right center;
-            transform: rotate(30deg);
-            animation: fs-rollelongate-load 1.6s ease-in-out infinite;
-            -webkit-animation: fs-rollelongate-load 1.6s ease-in-out infinite;
+            transform: rotate(20deg);
+            animation: fs-rollelongate-load 1.6s ease infinite;
+            -webkit-animation: fs-rollelongate-load 1.6s ease infinite;
         }
         .rollelongate-wrap span:after {
             width: 3rem;
             height: 5.5rem;
-            border-radius: 0 5rem 5rem 0;
+            border-radius: 0 5.5rem 5.5rem 0;
             background-color: #c3c3c3;
             position: absolute;
             /*top: -.2rem;*/   /*如果.rollelongate-wrap span的animation不开用这个*/
@@ -953,8 +955,8 @@
             content: '';
             transform-origin: left center;
             -webkit-transform-origin: left center;
-            animation: fs-rollelongate-load 1.6s .2s ease-in-out infinite;
-            -webkit-animation: fs-rollelongate-load 1.6s .5s ease-in-out infinite;
+            animation: fs-rollelongate-load 1.6s .3s ease infinite;
+            -webkit-animation: fs-rollelongate-load 1.6s .3s ease infinite;
         }
         @keyframes fs-rollelongate-load {
             0% {
@@ -970,42 +972,6 @@
             0% {
                 -webkit-transform: rotate(0deg);
                 transform: rotate(0deg);
-            }
-            10% {
-                -webkit-transform: rotate(0deg);
-                transform: rotate(0deg);
-            }
-            20% {
-                -webkit-transform: rotate(72deg);
-                transform: rotate(72deg);
-            }
-            30% {
-                -webkit-transform: rotate(72deg);
-                transform: rotate(72deg);
-            }
-            40% {
-                -webkit-transform: rotate(144deg);
-                transform: rotate(144deg);
-            }
-            50% {
-                -webkit-transform: rotate(144deg);
-                transform: rotate(144deg);
-            }
-            60% {
-                -webkit-transform: rotate(216deg);
-                transform: rotate(216deg);
-            }
-            70% {
-                -webkit-transform: rotate(216deg);
-                transform: rotate(216deg);
-            }
-            80% {
-                -webkit-transform: rotate(288deg);
-                transform: rotate(288deg);
-            }
-            90% {
-                -webkit-transform: rotate(288deg);
-                transform: rotate(288deg);
             }
             100% {
                 -webkit-transform: rotate(360deg);
