@@ -739,7 +739,7 @@
             width: .5rem;
             height: 5rem;
             opacity: 0;
-            animation: fs-ballhide-load 3s cubic-bezier(0.4, 0.35, 0.35, 0.45) infinite;
+            animation: fs-ballhide-load 3.5s cubic-bezier(0.3, 0.6, 0.7, 0.3) infinite;
         }
         .ballhide-wrap div:nth-of-type(1) { animation-delay: .08s; }
         .ballhide-wrap div:nth-of-type(2) { animation-delay: .16s; }
@@ -760,6 +760,9 @@
             0% {
                 opacity: 1;
                 transform: rotate(0);
+            }
+            30% {
+                transform: rotate(360deg);
             }
             60% {
                 opacity: 1;
@@ -862,10 +865,11 @@
         }
         /*最底层*/
         .rollgradient-wrap span:before {
-            width: 50%;
+            width: 100%;
             height: 50%;
             background-color: #ffffff;
-            border-radius: 100% 0 0 0;
+            border-top-left-radius: 50% 100%;
+            border-top-right-radius: 50% 100%;
             position: absolute;
             top: 0;
             left: 0;

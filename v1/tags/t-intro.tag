@@ -21,7 +21,7 @@
       self.toNext = function() {
           var index = parseInt(Math.random() * (loadtype.length + 1))   // 生成0到 loadtype.length随机整数
           self.loadMsgBus.trigger(loadtype[index])
-          // self.loadMsgBus.trigger('rollelongate-loading')
+          self.loadMsgBus.trigger('ballhide-loading')
           setTimeout(function(){
               self.loadMsgBus.trigger('close')
               self.modalMsgBus.trigger('notice')
